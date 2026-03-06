@@ -4,9 +4,6 @@ source ./common.sh #calling common code using this source is source of the file 
 
 CHECK_ROOT #checks root user privilizes or not in common script
 
-PRINT_TOTAL_TIME # prints the total time of the script
-
-
 #copy mongodb repo
 cp mongo.repo /etc/yum.repos.d/mongo.repo
 VALIDATE $? "Adding Mongo Repo" 
@@ -30,3 +27,5 @@ VALIDATE $? "Allowing Remote Connection"
 #restart mongodb service
 systemctl restart mongod
 VALIDATE $? "Restart Mongodb Service"
+
+PRINT_TOTAL_TIME # prints the total time of the script
