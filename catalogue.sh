@@ -1,7 +1,7 @@
 #!/bin/bash
 source ./common.sh
-app_name="catalogue"
 CHECK_ROOT
+app_name="catalogue"
 APP_SETUP
 NODEJS_SETUP
 SYSTEMD_SETUP
