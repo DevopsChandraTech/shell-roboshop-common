@@ -41,16 +41,13 @@ NODEJS_SETUP(){
     VALIDATE $? "Enable nodejs"
     dnf install nodejs -y &>> $LOG_FILE
     VALIDATE $? "Install nodejs"
-    npm install &>> $LOG_FILE
-    VALIDATE $? "Install Dependencies"
-    cp $SCRIPT_DIR/catalogue.service /etc/systemd/system/catalogue.service 
-    VALIDATE $? "Creating Service"
-}
-
-SYSTEMD_SETUP(){
-    systemctl daemon-reload
-    systemctl enable catalogue  &>> $LOG_FILE
-    VALIDATE $? "Enable Service"
+    id roboshop &>> $LOG_FILE
+    if [ $? -ne 0 ]; then
+        useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop &>> $LOG_FILE
+        VALIDATE $? "Creating User"
+    else 
+        echo -e "User Already Exist....! $Y SKIPPING $N" &>> $LOG_FILE
+    fi
 }
 
 APP_SETUP(){
@@ -66,6 +63,14 @@ APP_SETUP(){
     VALIDATE $? "Unzip Code"
     cp $SCRIPT_DIR/$app_name.service /etc/systemd/system/$app_name.service 
     VALIDATE $? "Creating Service"
+    npm install &>> $LOG_FILE
+    VALIDATE $? "Install Dependencies"
+}
+
+SYSTEMD_SETUP(){
+    systemctl daemon-reload
+    systemctl enable $app_name  &>> $LOG_FILE
+    VALIDATE $? "Enable Service"
 }
 
 RESTART_SERVICE(){
