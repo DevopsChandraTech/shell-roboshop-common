@@ -64,6 +64,8 @@ APP_SETUP(){
     VALIDATE $? "Remove code"
     unzip /tmp/$app_name.zip &>> $LOG_FILE
     VALIDATE $? "Unzip Code"
+    cp $SCRIPT_DIR/$app_name.service /etc/systemd/system/$app_name.service 
+    VALIDATE $? "Creating Service"
 }
 
 RESTART_SERVICE(){
