@@ -11,6 +11,7 @@ LOG_FOLDER="/var/log/shell-roboshop"
 SCRIPT_NAME=$(echo $0 | cut -d "." -f1)
 LOG_FILE="$LOG_FOLDER/$SCRIPT_NAME.log"
 START_TIME=$(date +%s)
+SCRIPT_DIR=$PWD
 MONGODB_HOST=mongodb.devaws.shop
 
 mkdir -p /var/log/shell-roboshop
