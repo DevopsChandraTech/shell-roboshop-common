@@ -29,5 +29,6 @@ else
     echo -e "$app_name products already loaded ... $Y SKIPPING $N"
 fi
 
-systemctl restart $app_name
-VALIDATE $? "Restarted $app_name"
+RESTART_SERVICE
+
+PRINT_TOTAL_TIME
