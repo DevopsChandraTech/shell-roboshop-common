@@ -10,10 +10,10 @@ cp $SCRIPT_DIR/mongo.repo /etc/yum.repos.d/mongo.repo
 VALIDATE $? "Copy mongodb repo"
 
 dnf install mongodb-mongosh -y  &>> $LOG_FILE
-VALIDATE $? "Install mongosh"
+VALIDATE $? "Install mongodb client"
 
 INDEX=$(mongosh mongodb.devaws.shop --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')")
-if [ $? -le 0 ]; then
+if [ $INDEX -le 0 ]; then
     mongosh --host $MONGODB_HOST </app/db/master-data.js &>>$LOG_FILE
     VALIDATE $? "Load $app_name products"
 else

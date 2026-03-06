@@ -42,13 +42,9 @@ NODEJS_SETUP(){
     VALIDATE $? "Enable nodejs"
     dnf install nodejs -y &>> $LOG_FILE
     VALIDATE $? "Install nodejs"
-    id roboshop &>> $LOG_FILE
-    if [ $? -ne 0 ]; then
-        useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop &>> $LOG_FILE
-        VALIDATE $? "Creating User"
-    else 
-        echo -e "User Already Exist....! $Y SKIPPING $N" &>> $LOG_FILE
-    fi
+    npm install &>> $LOG_FILE
+    VALIDATE $? "Install Dependencies"
+
 }
 
 APP_SETUP(){
@@ -64,8 +60,13 @@ APP_SETUP(){
     VALIDATE $? "Unzip Code"
     cp $SCRIPT_DIR/$app_name.service /etc/systemd/system/$app_name.service 
     VALIDATE $? "Creating Service"
-    npm install &>> $LOG_FILE
-    VALIDATE $? "Install Dependencies"
+    id roboshop &>> $LOG_FILE
+    if [ $? -ne 0 ]; then
+        useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop &>> $LOG_FILE
+        VALIDATE $? "Creating User"
+    else 
+        echo -e "User Already Exist....! $Y SKIPPING $N" &>> $LOG_FILE
+    fi    
 }
 
 SYSTEMD_SETUP(){
