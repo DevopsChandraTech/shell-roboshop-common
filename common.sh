@@ -55,14 +55,14 @@ JAVA_SETUP(){
     mv target/$app_name-1.0.jar shipping.jar 
 }
 
-NGINX_SETUP(){
-    dnf module disable nginx -y &>> $LOG_FILE
-    VALIDATE $? "Disable Nginx Previous"
-    dnf module enable nginx:1.24 -y &>> $LOG_FILE
-    VALIDATE $? "Enable Nginx"
-    dnf install nginx -y &>> $LOG_FILE
-    VALIDATE $? "Installing Nginx"
-}
+# NGINX_SETUP(){
+#     dnf module disable nginx -y &>> $LOG_FILE
+#     VALIDATE $? "Disable Nginx Previous"
+#     dnf module enable nginx:1.24 -y &>> $LOG_FILE
+#     VALIDATE $? "Enable Nginx"
+#     dnf install nginx -y &>> $LOG_FILE
+#     VALIDATE $? "Installing Nginx"
+# }
 
 APP_SETUP(){
     mkdir -p /app  &>> $LOG_FILE
