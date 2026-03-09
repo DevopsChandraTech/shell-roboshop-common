@@ -1,3 +1,9 @@
+#!/bin/bash
+
+source ./common.sh
+
+CHECK_ROOT
+
 dnf module disable redis -y &>>$LOG_FILE
 VALIDATE $? "Disable Module"
 
