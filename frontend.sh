@@ -1,4 +1,5 @@
 source ./common.sh
+
 CHECK_ROOT
 NGINX_SETUP
 

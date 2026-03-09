@@ -56,11 +56,11 @@ JAVA_SETUP(){
 }
 
 NGINX_SETUP(){
-    dnf module disable nginx -y
+    dnf module disable nginx -y &>> $LOG_FILE
     VALIDATE $? "Disable Nginx Previous"
-    dnf module enable nginx:1.24 -y
+    dnf module enable nginx:1.24 -y &>> $LOG_FILE
     VALIDATE $? "Enable Nginx"
-    dnf install nginx -y
+    dnf install nginx -y &>> $LOG_FILE
     VALIDATE $? "Installing Nginx"
 }
 
