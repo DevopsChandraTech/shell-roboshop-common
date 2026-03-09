@@ -48,6 +48,7 @@ NODEJS_SETUP(){
 }
 
 JAVA_SETUP(){
+    dnf install maven -y &>> $LOG_FILE
     mvn clean package &>> $LOG_FILE
     VALIDATE $? "Installing mvn"
     mv target/$app_name-1.0.jar shipping.jar 
