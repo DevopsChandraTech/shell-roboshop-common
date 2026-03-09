@@ -19,5 +19,7 @@ else
     echo -e "Shipping data is already loaded ... $Y SKIPPING $N"
 fi
 
+RESTART_SERVICE
+
 PRINT_TOTAL_TIME
 
