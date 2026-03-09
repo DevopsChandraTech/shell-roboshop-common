@@ -47,6 +47,14 @@ NODEJS_SETUP(){
 
 }
 
+JAVA_SETUP(){
+    cd $SCRIPT_DIR/app &>> $LOG_FILE
+    VALIDATE $? "Enter Script Dir"
+    mvn clean package &>> $LOG_FILE
+    VALIDATE $? "Installing mvn"
+    mv target/$app_name-1.0.jar shipping.jar 
+}
+
 APP_SETUP(){
     mkdir -p /app  &>> $LOG_FILE
     VALIDATE $? "Create Directory"
