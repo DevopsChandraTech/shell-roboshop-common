@@ -15,6 +15,8 @@ cd /usr/share/nginx/html &>> $LOG_FILE
 VALIDATE $? "Enter Directory"
 unzip /tmp/frontend.zip &>> $LOG_FILE
 VALIDATE $? "Unzip Code"
+rm -rf /etc/nginx/nginx.conf
+VALIDATE $? "Remove Default Config"
 cp $SCRIPT_DIR/nginx.conf vim /etc/nginx/nginx.conf &>> $LOG_FILE
 systemctl restart nginx &>> $LOG_FILE
 VALIDATE $? "Restart Service"
