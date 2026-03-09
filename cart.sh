@@ -1,0 +1,9 @@
+#!/bin/bash
+source ./common.sh
+CHECK_ROOT
+app_name="cart"
+APP_SETUP
+NODEJS_SETUP
+SYSTEMD_SETUP
+RESTART_SERVICE
+PRINT_TOTAL_TIME
