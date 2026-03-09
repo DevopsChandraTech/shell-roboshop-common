@@ -1,5 +1,5 @@
 #!/bin/bash
-
+source ./common.sh
 CHECK_ROOT
 app_name=shipping
 APP_SETUP
