@@ -13,6 +13,7 @@ LOG_FILE="$LOG_FOLDER/$SCRIPT_NAME.log"
 START_TIME=$(date +%s)
 SCRIPT_DIR=$PWD
 MONGODB_HOST=mongodb.devaws.shop
+MYSQL_HOST=mysql.devaws.shop
 
 mkdir -p /var/log/shell-roboshop
 echo "the script started at $(date)"
