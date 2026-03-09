@@ -48,7 +48,7 @@ NODEJS_SETUP(){
 }
 
 JAVA_SETUP(){
-    cd $SCRIPT_DIR/app &>> $LOG_FILE
+    cd /app &>> $LOG_FILE
     VALIDATE $? "Enter Script Dir"
     mvn clean package &>> $LOG_FILE
     VALIDATE $? "Installing mvn"
