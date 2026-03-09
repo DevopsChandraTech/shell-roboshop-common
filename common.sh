@@ -48,8 +48,6 @@ NODEJS_SETUP(){
 }
 
 JAVA_SETUP(){
-    cd /app &>> $LOG_FILE
-    VALIDATE $? "Enter Script Dir"
     mvn clean package &>> $LOG_FILE
     VALIDATE $? "Installing mvn"
     mv target/$app_name-1.0.jar shipping.jar 
