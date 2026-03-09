@@ -1,17 +1,18 @@
 source ./common.sh
 CHECK_ROOT
-app_name="frontend"
 NGINX_SETUP
 SYSTEMD_SETUP
 
-rm -rf /usr/share/nginx/html/* &>>LOG_FILE
+rm -rf /usr/share/nginx/html/* &>>$LOG_FILE
 VALIDATE $? "Remove Default Html"
 curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend-v3.zip &>>LOG_FILE
 VALIDATE $? "Download App Code"
-cd /usr/share/nginx/html &>>LOG_FILE
+cd /usr/share/nginx/html &>>$LOG_FILE
 VALIDATE $? "Enter Directory"
-unzip /tmp/frontend.zip &>>LOG_FILE
+unzip /tmp/frontend.zip &>>$LOG_FILE
 VALIDATE $? "Unzip Code"
-cp $SCRIPT_DIR/nginx.conf vim /etc/nginx/nginx.conf &>>LOG_FILE
-systemctl restart nginx &>>LOG_FILE
+cp $SCRIPT_DIR/nginx.conf vim /etc/nginx/nginx.conf &>>$LOG_FILE
+systemctl restart nginx &>>$LOG_FILE
 VALIDATE $? "Restart Service"
+
+PRINT_TOTAL_TIME
