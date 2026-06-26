@@ -73,7 +73,7 @@ systemd_setup(){
     VALIDATE $? "daemon-reload"
     systemctl enable $app_name &>> $LOG_FILE
     VALIDATE $? "Enable Service" 
-    systemctl start $app_name &>> $LOG_FILE
+    systemctl restart $app_name &>> $LOG_FILE
     VALIDATE $? "Start Service"
 }
 
