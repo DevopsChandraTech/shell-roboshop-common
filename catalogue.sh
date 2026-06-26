@@ -3,6 +3,8 @@
 source ./common.sh
 
 app_name="catalogue"
+SCRIPT_DIR=$PWD
+MONGODB_HOST="mongodb.devaws.shop"
 check_root
 app_setup
 nodejs_setup
@@ -19,7 +21,7 @@ if [ $INDEX -le 1 ]; then
     mongosh --host $MONGODB_HOST </app/db/master-data.js &>> $LOG_FILE
     VALIDATE $? "Create Schema"
 else
-    echo -e "Catalogue products already exist $Y Skipping $N"
+    echo -e "$app_name products already exist $Y Skipping $N"
 fi
 
 restart_service
