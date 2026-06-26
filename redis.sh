@@ -20,3 +20,4 @@ systemctl restart redis &>> $LOG_FILE
 VALIDATE $? "restart redis"
 
 print_total_time
+
