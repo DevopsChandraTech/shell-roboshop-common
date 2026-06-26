@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ./mongodb.sh
+source ./common.sh
 
 check_root
 
