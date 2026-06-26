@@ -2,9 +2,8 @@
 
 source ./common.sh
 
-app_name="cart"
+app_name="user"
 SCRIPT_DIR=$PWD
-MONGODB_HOST="cart.devaws.shop"
 
 check_root
 app_setup
