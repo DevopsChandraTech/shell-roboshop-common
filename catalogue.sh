@@ -9,9 +9,7 @@ MONGODB_HOST="mongodb.devaws.shop"
 check_root
 app_setup
 nodejs_setup
-restart_service
-print_total_time
-
+systemd_setup
 
 cp /$SCRIPT_DIR/mongo.repo /etc/yum.repos.d/mongo.repo
 VALIDATE $? "Copy mongo repo service"
