@@ -82,12 +82,6 @@ restart_service(){
     VALIDATE $? "Restart $app_name"
 }
 
-
-
-
-
-
-
 print_total_time(){
     END_TIME=$(date +%s)
     TOTAL_TIME=$(($END_TIME - $START_TIME))

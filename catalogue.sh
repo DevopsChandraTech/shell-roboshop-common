@@ -5,6 +5,7 @@ source ./common.sh
 app_name="catalogue"
 SCRIPT_DIR=$PWD
 MONGODB_HOST="mongodb.devaws.shop"
+
 check_root
 app_setup
 nodejs_setup
