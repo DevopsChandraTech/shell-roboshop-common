@@ -41,7 +41,7 @@ nodejs_setup(){
     dnf install nodejs -y &>> $LOG_FILE
     VALIDATE $? "Install nodejs"
     # systemuser creation
-    cd -p /app 
+    cd /app 
     VALIDATE $? "Change Directory"
     npm install &>> $LOG_FILE
     VALIDATE $? "Install Dependencies"
