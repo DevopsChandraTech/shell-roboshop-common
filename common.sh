@@ -67,19 +67,19 @@ app_setup(){
 }
 
 systemd_setup(){
-    cp /$SCRIPT_DIR/catalogue.service /etc/systemd/system/catalogue.service
+    cp /$SCRIPT_DIR/$app_name.service /etc/systemd/system/$app_name.service
     VALIDATE $? "Copy systemctl Service"
     systemctl daemon-reload &>> $LOG_FILE
     VALIDATE $? "daemon-reload"
-    systemctl enable catalogue &>> $LOG_FILE
+    systemctl enable $app_name &>> $LOG_FILE
     VALIDATE $? "Enable Service" 
-    systemctl start catalogue &>> $LOG_FILE
+    systemctl start $app_name &>> $LOG_FILE
     VALIDATE $? "Start Service"
 }
 
 restart_service(){
-    systemctl restart catalogue.service &>> $LOG_FILE
-    VALIDATE $? "Restart catalogue"
+    systemctl restart $app_name.service &>> $LOG_FILE
+    VALIDATE $? "Restart $app_name"
 }
 
 
