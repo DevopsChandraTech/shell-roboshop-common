@@ -86,6 +86,30 @@ python3_setup(){
     VALIDATE $? "Installing Requirments"
 }
 
+nginx_setup(){
+    dnf module disable nginx -y  &>> $LOG_FILE
+    VALIDATE $? "Disable nginx"
+    dnf module enable nginx:1.24 -y &>> $LOG_FILE
+    VALIDATE $? "Enable nginx"
+    dnf install nginx -y &>> $LOG_FILE
+    VALIDATE $? "Install nginx"
+    systemctl enable nginx &>> $LOG_FILE
+    VALIDATE $? "enable nginx"
+    systemctl start nginx &>> $LOG_FILE
+    VALIDATE $? "Start nginx"
+    rm -rf /usr/share/nginx/html/* &>> $LOG_FILE
+    VALIDATE $? "Remove default content"
+    curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend-v3.zip &>> $LOG_FILE
+    VALIDATE $? "Download nginx code"
+    cd /usr/share/nginx/html &>> $LOG_FILE
+    VALIDATE $? "Change Directory"
+    unzip /tmp/frontend.zip &>> $LOG_FILE
+    VALIDATE $? "Unzip code"
+    rm -rf /etc/nginx/nginx.conf
+    cp $SCRIPT_DIR/nginx.conf /etc/nginx/nginx.conf
+    VALIDATE $? "Copying nginx.conf"
+}
+
 systemd_setup(){
     cp /$SCRIPT_DIR/$app_name.service /etc/systemd/system/$app_name.service
     VALIDATE $? "Copy systemctl Service"

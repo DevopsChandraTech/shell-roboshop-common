@@ -6,6 +6,6 @@ app_name="payment"
 SCRIPT_DIR=$PWD
 
 check_root
-app_setup
-python3_setup
-systemd_setup
+nginx_setup
+restart_service
+print_total_time
