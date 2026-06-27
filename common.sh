@@ -80,8 +80,8 @@ java_setup(){
 }
 
 python3_setup(){
-    dnf install python3 gcc python3-devel -y &>> $LOG_FILE
-    VALIDATE $? "Installing Python"
+    dnf install $app_name gcc $app_name-devel -y &>> $LOG_FILE
+    VALIDATE $? "Installing $app_name"
     pip3 install -r requirements.txt &>> $LOG_FILE
     VALIDATE $? "Installing Requirments"
 }
