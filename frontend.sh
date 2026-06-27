@@ -2,7 +2,7 @@
 
 source ./common.sh
 
-app_name="payment"
+app_name="nginx"
 SCRIPT_DIR=$PWD
 
 check_root
