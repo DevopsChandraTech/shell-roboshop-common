@@ -21,6 +21,8 @@ check_root(){
 LOG_FOLDER="/var/log/shell-script"
 SCRIPT_NAME=$(echo $0 | awk -F "." '{print $1}')
 LOG_FILE="$LOG_FOLDER/$SCRIPT_NAME.log"
+MONGODB_HOST="mongodb.devaws.shop"
+MYSQL_HOST="mysql.devaws.shop"
 
 mkdir -p $LOG_FOLDER
 
@@ -64,6 +66,24 @@ app_setup(){
     VALIDATE $? "Change Directory"
     unzip /tmp/$app_name.zip &>> $LOG_FILE
     VALIDATE $? "Unzip the Code"
+}
+
+java_setup(){
+    dnf install maven -y &>> $LOG_FILE
+    VALIDATE $? "Install maven"
+    mvn clean package &>> $LOG_FILE
+    VALIDATE $? "Install Package" 
+    mv target/$app_name-1.0.jar $app_name.jar &>> $LOG_FILE
+    VALIDATE $? "Move jar file"
+    cp /$SCRIPT_DIR/$app_name.service /etc/systemd/system/$app_name.service &>> $LOG_FILE
+    VALIDATE $? "Coping repo"
+}
+
+python3_setup(){
+    dnf install python3 gcc python3-devel -y &>> $LOG_FILE
+    VALIDATE $? "Installing Python"
+    pip3 install -r requirements.txt &>> $LOG_FILE
+    VALIDATE $? "Installing Requirments"
 }
 
 systemd_setup(){
